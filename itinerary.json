@@ -1,28 +1,68 @@
 {
     "sections": [
         {
-            "title": "Día 1 - Museo del Prado",
+            "title": "Día 0 - Viaje al País del Sol Naciente",
             "stops": [
                 {
-                    "name": "Museo del Prado",
-                    "startTime": "10:00",
-                    "endTime": "13:00",
-                    "date": "2024-06-10",
-                    "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fastelus.com%2Fwp-content%2Fviajes%2FVisita-Museo-del-Prado.png",
-                    "description": "El Museo del Prado es uno de los museos más importantes del mundo, con una extensa colección de arte europeo."
+                    "name": "Vuelo a Frankfurt",
+                    "startTime": "06:40",
+                    "endTime": "08:50",
+                    "date": "2024-08-03",
+                    "image": "https://es.wikipedia.org/wiki/Avi%C3%B3n#/media/Archivo:Air_india_b747-400_vt-esn_arp.jpg",
+                    "description": ""
+                },
+                {
+                    "name": "Vuelo a Tokyo",
+                    "startTime": "12:10",
+                    "endTime": "08:50",
+                    "date": "2024-08-03",
+                    "image": "https://pixy.org/ph/cccccc/999999/noframe/nocross/640x480.jpg",
+                    "description": ""
                 }
             ]
         },
         {
-            "title": "Día 2 - Parque del Retiro",
+            "title": "Día 1 - Llegada a Tokyo",
             "stops": [
                 {
-                    "name": "Parque del Retiro",
-                    "startTime": "14:00",
-                    "endTime": "17:00",
-                    "date": "2024-06-11",
-                    "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fa.cdn-hotels.com%2Fgdcs%2Fproduction84%2Fd314%2Fef4c0fcd-c07e-41c2-b847-774f1eccaa73.jpg",
-                    "description": "El Parque del Retiro es uno de los pulmones verdes de Madrid, con jardines históricos y monumentos."
+                    "name": "Aeropuerto de Haneda",
+                    "startTime": "08:40",
+                    "endTime": "10:15",
+                    "date": "2024-08-04",
+                    "image": "https://pixy.org/ph/cccccc/999999/noframe/nocross/640x480.jpg",
+                    "description": "Comprar tarjetas SIM y tarjetas de transporte. Después, ir hacia el hotel en Shinjuku."
+                },
+                {
+                    "name": "Hotel 'The Knot Tokyo Shinjuku'",
+                    "startTime": "10:15",
+                    "endTime": "11:30",
+                    "date": "2024-08-00",
+                    "image": "https://pixy.org/ph/cccccc/999999/noframe/nocross/640x480.jpg",
+                    "description": "Cuando lleguemos al hotel seguramente no podamos hacer check-in aún, pero podemos dejar las maletas e ir a explorar hasta la hora del check-in."
+                },
+                {
+                    "name": "Exploración por Shinjuku y comer",
+                    "startTime": "11:30",
+                    "endTime": "14:30",
+                    "date": "2024-08-00",
+                    "image": "https://pixy.org/ph/cccccc/999999/noframe/nocross/640x480.jpg",
+                    "description": ""
+                },
+                {
+                    "name": "Templos Sensō-ji y Mitsumine",
+                    "startTime": "14:30",
+                    "endTime": "16:30",
+                    "date": "2024-08-00",
+                    "image": "https://pixy.org/ph/cccccc/999999/noframe/nocross/640x480.jpg",
+                    "description": ""
+                },
+                {
+                    "name": "Tokyo Skytree",
+                    "startTime": "16:30",
+                    "endTime": "19:00",
+                    "date": "2024-08-00",
+                    "image": "https://pixy.org/ph/cccccc/999999/noframe/nocross/640x480.jpg",
+                    "description": ""
                 }
             ]
         }

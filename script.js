@@ -1,34 +1,25 @@
-// Datos del itinerario
-const itineraryData = {
-    "sections": [
-        {
-            "title": "Día 1 - Museo del Prado",
-            "stops": [
-                {
-                    "name": "Museo del Prado",
-                    "startTime": "10:00",
-                    "endTime": "13:00",
-                    "date": "2024-06-10",
-                    "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fastelus.com%2Fwp-content%2Fviajes%2FVisita-Museo-del-Prado.png",
-                    "description": "El Museo del Prado es uno de los museos más importantes del mundo, con una extensa colección de arte europeo."
-                }
-            ]
-        },
-        {
-            "title": "Día 2 - Parque del Retiro",
-            "stops": [
-                {
-                    "name": "Parque del Retiro",
-                    "startTime": "14:00",
-                    "endTime": "17:00",
-                    "date": "2024-06-11",
-                    "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fa.cdn-hotels.com%2Fgdcs%2Fproduction84%2Fd314%2Fef4c0fcd-c07e-41c2-b847-774f1eccaa73.jpg",
-                    "description": "El Parque del Retiro es uno de los pulmones verdes de Madrid, con jardines históricos y monumentos."
-                }
-            ]
+// Variable global para almacenar los datos del itinerario
+let itineraryData = null;
+
+// Función para cargar los datos del JSON
+async function loadItineraryData() {
+    try {
+        const response = await fetch('itinerary.json');
+        if (!response.ok) {
+            throw new Error('Error al cargar el archivo JSON');
         }
-    ]
-};
+        itineraryData = await response.json();
+        renderItinerary();
+    } catch (error) {
+        console.error('Error:', error);
+        document.querySelector('.sections').innerHTML = `
+            <div class="error-message">
+                <h3>Error al cargar el itinerario</h3>
+                <p>Por favor, asegúrate de que el archivo itinerary.json existe y es accesible.</p>
+            </div>
+        `;
+    }
+}
 
 // Función para actualizar el reloj
 function updateClock(startTime, endTime) {
@@ -101,6 +92,8 @@ function showStopInfo(stop) {
 
 // Función para renderizar el itinerario
 function renderItinerary() {
+    if (!itineraryData) return;
+    
     const sectionsContainer = document.querySelector('.sections');
     sectionsContainer.innerHTML = ''; // Limpiar el contenedor
     
@@ -147,5 +140,5 @@ function renderItinerary() {
 
 // Inicializar la aplicación
 document.addEventListener('DOMContentLoaded', () => {
-    renderItinerary();
+    loadItineraryData();
 });
