@@ -81,13 +81,13 @@ function updateCalendar(date) {
 }
 
 // Función para mostrar la información de una parada
-function showStopInfo(stop) {
+function showStopInfo(stop, section) {
     document.getElementById('location-img').src = stop.image;
     document.getElementById('location-title').textContent = stop.name;
     document.getElementById('location-text').textContent = stop.description;
     
     updateClock(stop.startTime, stop.endTime);
-    updateCalendar(stop.date);
+    updateCalendar(section.date);
 }
 
 // Función para renderizar el itinerario
@@ -119,14 +119,15 @@ function renderItinerary() {
         stopElement.addEventListener('click', () => {
             const sectionIndex = parseInt(stopElement.dataset.sectionIndex);
             const stopIndex = parseInt(stopElement.dataset.stopIndex);
-            const stop = itineraryData.sections[sectionIndex].stops[stopIndex];
+            const section = itineraryData.sections[sectionIndex];
+            const stop = section.stops[stopIndex];
             
             // Remover clase active de todas las paradas
             document.querySelectorAll('.stop').forEach(el => el.classList.remove('active'));
             // Agregar clase active a la parada seleccionada
             stopElement.classList.add('active');
             
-            showStopInfo(stop);
+            showStopInfo(stop, section);
         });
     });
     
@@ -134,7 +135,7 @@ function renderItinerary() {
     if (itineraryData.sections[0]?.stops[0]) {
         const firstStop = document.querySelector('.stop');
         firstStop.classList.add('active');
-        showStopInfo(itineraryData.sections[0].stops[0]);
+        showStopInfo(itineraryData.sections[0].stops[0], itineraryData.sections[0]);
     }
 }
 
