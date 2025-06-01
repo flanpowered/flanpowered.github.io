@@ -1,0 +1,30 @@
+{
+    "sections": [
+        {
+            "title": "Día 1 - Museo del Prado",
+            "stops": [
+                {
+                    "name": "Museo del Prado",
+                    "startTime": "10:00",
+                    "endTime": "13:00",
+                    "date": "2024-06-10",
+                    "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fastelus.com%2Fwp-content%2Fviajes%2FVisita-Museo-del-Prado.png",
+                    "description": "El Museo del Prado es uno de los museos más importantes del mundo, con una extensa colección de arte europeo."
+                }
+            ]
+        },
+        {
+            "title": "Día 2 - Parque del Retiro",
+            "stops": [
+                {
+                    "name": "Parque del Retiro",
+                    "startTime": "14:00",
+                    "endTime": "17:00",
+                    "date": "2024-06-11",
+                    "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fa.cdn-hotels.com%2Fgdcs%2Fproduction84%2Fd314%2Fef4c0fcd-c07e-41c2-b847-774f1eccaa73.jpg",
+                    "description": "El Parque del Retiro es uno de los pulmones verdes de Madrid, con jardines históricos y monumentos."
+                }
+            ]
+        }
+    ]
+} 

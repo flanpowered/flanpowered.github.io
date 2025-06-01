@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itinerario de Viaje</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sección izquierda -->
+        <div class="left-section">
+            <div class="itinerary">
+                <h2>Itinerario</h2>
+                <div class="sections">
+                    <!-- Las secciones se cargarán dinámicamente -->
+                </div>
+            </div>
+            <div class="time-display">
+                <div class="analog-clock">
+                    <div class="clock-face">
+                        <div class="hand hour-hand"></div>
+                        <div class="hand minute-hand"></div>
+                        <div class="hand second-hand"></div>
+                        <div class="center-dot"></div>
+                        <div class="time-arc"></div>
+                    </div>
+                </div>
+                <div class="calendar">
+                    <!-- El calendario se cargará dinámicamente -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección derecha -->
+        <div class="right-section">
+            <div class="location-image">
+                <img src="" alt="Imagen del lugar" id="location-img">
+            </div>
+            <div class="location-description">
+                <h3 id="location-title"></h3>
+                <p id="location-text"></p>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
