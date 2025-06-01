@@ -68,14 +68,24 @@ function updateCalendar(date) {
     const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
         "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
     
+    // Calcular fechas anteriores y siguientes
+    const dates = [];
+    for (let i = -3; i <= 3; i++) {
+        const newDate = new Date(eventDate);
+        newDate.setDate(eventDate.getDate() + i);
+        dates.push(newDate);
+    }
+    
     calendar.innerHTML = `
         <div class="calendar-header">
             <h3>${monthNames[eventDate.getMonth()]} ${eventDate.getFullYear()}</h3>
         </div>
         <div class="calendar-body">
-            <div class="calendar-date ${eventDate.getDate()}">
-                ${eventDate.getDate()}
-            </div>
+            ${dates.map((date, index) => `
+                <div class="calendar-date ${index === 3 ? 'current' : index < 3 ? 'prev' : 'next'}">
+                    <span class="day-number">${date.getDate()}</span>
+                </div>
+            `).join('')}
         </div>
     `;
 }
