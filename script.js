@@ -30,13 +30,65 @@ function updateClock(startTime, endTime) {
     const startAngle = (startHour % 12) * 30 + startMinute * 0.5;
     const endAngle = (endHour % 12) * 30 + endMinute * 0.5;
     
-    // Actualizar manecillas
-    document.querySelector('.hour-hand').style.transform = `rotate(${startAngle}deg)`;
-    document.querySelector('.minute-hand').style.transform = `rotate(${startMinute * 6}deg)`;
-    
-    // Actualizar arco de tiempo usando SVG
+    // Limpiar el arco de tiempo existente
     const timeArc = document.querySelector('.time-arc');
-    const size = 200; // Tamaño del reloj
+    timeArc.innerHTML = '';
+    
+    // Obtener las manecillas actuales
+    const hourHand = document.querySelector('.hour-hand');
+    const minuteHand = document.querySelector('.minute-hand');
+    
+    // Obtener los ángulos actuales
+    const currentHourAngle = getCurrentRotation(hourHand);
+    const currentMinuteAngle = getCurrentRotation(minuteHand);
+    
+    // Animar las manecillas
+    animateHand(hourHand, currentHourAngle, startAngle, 1000);
+    animateHand(minuteHand, currentMinuteAngle, startMinute * 6, 1000);
+    
+    // Esperar a que termine la animación de las manecillas antes de mostrar el arco
+    setTimeout(() => {
+        updateTimeArc(startAngle, endAngle);
+    }, 1000);
+}
+
+// Función para obtener la rotación actual de una manecilla
+function getCurrentRotation(element) {
+    const transform = window.getComputedStyle(element).getPropertyValue('transform');
+    if (transform === 'none') return 0;
+    
+    const values = transform.split('(')[1].split(')')[0].split(',');
+    const a = parseFloat(values[0]);
+    const b = parseFloat(values[1]);
+    return Math.round(Math.atan2(b, a) * (180/Math.PI));
+}
+
+// Función para animar una manecilla
+function animateHand(hand, startAngle, endAngle, duration) {
+    const startTime = performance.now();
+    
+    function animate(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Función de easing para suavizar la animación
+        const easeProgress = 1 - Math.pow(1 - progress, 3);
+        
+        const currentAngle = startAngle + (endAngle - startAngle) * easeProgress;
+        hand.style.transform = `rotate(${currentAngle}deg)`;
+        
+        if (progress < 1) {
+            requestAnimationFrame(animate);
+        }
+    }
+    
+    requestAnimationFrame(animate);
+}
+
+// Función para actualizar el arco de tiempo
+function updateTimeArc(startAngle, endAngle) {
+    const timeArc = document.querySelector('.time-arc');
+    const size = 250; // Tamaño del reloj
     const radius = size / 2; // Radio del arco
     const center = size / 2; // Centro del reloj
     
@@ -54,10 +106,30 @@ function updateClock(startTime, endTime) {
     const largeArcFlag = endAngle - startAngle <= 180 ? 0 : 1;
     const pathData = `M ${center} ${center} L ${x1} ${y1} A ${radius} ${radius} 0 ${largeArcFlag} 1 ${x2} ${y2} Z`;
     
-    // Actualizar el SVG
-    timeArc.innerHTML = `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
-        <path d="${pathData}" fill="rgba(0, 123, 255, 0.1)" stroke="rgba(0, 123, 255, 0.3)" stroke-width="2"/>
-    </svg>`;
+    // Crear el SVG con el path
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("width", size);
+    svg.setAttribute("height", size);
+    svg.setAttribute("viewBox", `0 0 ${size} ${size}`);
+    
+    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    path.setAttribute("d", pathData);
+    path.setAttribute("fill", "rgba(0, 123, 255, 0.1)");
+    path.setAttribute("stroke", "rgba(0, 123, 255, 0.3)");
+    path.setAttribute("stroke-width", "2");
+    
+    // Añadir la animación usando SMIL
+    const animate = document.createElementNS("http://www.w3.org/2000/svg", "animate");
+    animate.setAttribute("attributeName", "opacity");
+    animate.setAttribute("from", "0");
+    animate.setAttribute("to", "1");
+    animate.setAttribute("dur", "0.5s");
+    animate.setAttribute("fill", "freeze");
+    path.appendChild(animate);
+    
+    svg.appendChild(path);
+    timeArc.innerHTML = '';
+    timeArc.appendChild(svg);
 }
 
 // Función para actualizar el calendario
